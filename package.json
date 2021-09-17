@@ -1,23 +1,24 @@
 {
-  "name": "udemy-proxy-carinij",
+  "name": "udemy-proxy",
   "version": "1.0.0",
   "description": "Proxy for Udemy clone website",
   "scripts": {
     "test": "jest --detectOpenHandles",
-    "start": "nodemon server/start.js",
+    "start": "node server/server.js",
+    "server-dev": "nodemon server/server.js",
     "build": "webpack",
     "dev": "webpack --watch"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Charlotte-Badger/udemy-proxy-carinij.git"
+    "url": "https://github.com/AboutURI/colton-proxy.git"
   },
-  "author": "Jason P. Carini",
+  "author": "Colton Medlin",
   "license": "0BSD",
   "bugs": {
-    "url": "https://github.com/Charlotte-Badger/udemy-proxy-carinij/issues"
+    "url": "https://github.com/AboutURI/colton-proxy/issues"
   },
-  "homepage": "https://github.com/Charlotte-Badger/udemy-proxy-carinij#readme",
+  "homepage": "https://github.com/AboutURI/colton-proxy#readme",
   "devDependencies": {
     "@babel/core": "^7.14.0",
     "@babel/node": "^7.13.13",
@@ -48,12 +49,14 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "mongoose": "^5.12.7",
     "nodemon": "^2.0.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "redis": "^3.1.2",
     "shrink-ray-current": "^4.1.3"
   }
 }

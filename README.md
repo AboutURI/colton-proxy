@@ -59,6 +59,71 @@ Mean response/sec: 165.27
 
 ### Vertical Scaling
 
+After this initial deployment, I quickly determined that vertical scaling was needed to achieve the service level agreement.
+Node clusters had already been setup on the server locally and the number of t2.micros needed would have made the system unwieldy. swithching to mediums allowed for multithreading of the multicore processors.
+
+![vertical-scaling](https://github.com/AboutURI/colton-proxy/blob/main/images/arc-2.png)
+
+This setup was able to double the traffic before failing. The system now maxed out at 320rps.
+at the previous failure point (165 rps), there was a response time reduction of 97%
+
+```
+Mean response/sec: 165.67
+  Response time (msec):
+    min: 27
+    max: 146
+    median: 65
+    p95: 105
+    p99: 121
+```
+
+new system max -> 320rps
+
+```
+Mean response/sec: 326.13
+  Response time (msec):
+    min: 4254
+    max: 9333
+    median: 6608
+    p95: 8535.1
+    p99: 8971.8
+```
+
+### Horizontal Scaling
+
+The next step was to create a load balancer using NGINX. This was deployed on a t2.micro and balanced the load across 4x t2.mediums using a round-robin approach.
+
+![horizontal-scaling](https://github.com/AboutURI/colton-proxy/blob/main/images/arc-3.png)
+
+This system was very powerful and managed to achieve the requirements of the service level agreement with little trouble.
+The previous system was failing at 320rps (response times over 4 seconds) this system reduced that time by 98%/
+
+```
+Mean response/sec: 322.85
+  Response time (msec):
+    min: 28
+    max: 245
+    median: 57
+    p95: 166
+    p99: 201
+```
+
+### Caching
+
+The final improvement was to add a Redis caching layer on the proxy server. By adding the cache here, I was able to take advantage of the unused memory while also protecting the entire system.
+
+![caching](https://github.com/AboutURI/colton-proxy/blob/main/images/arc-4.png)
+
+
+```
+Mean response/sec: 650.77
+  Response time (msec):
+    min: 28
+    max: 270
+    median: 70
+    p95: 220
+    p99: 260
+```
 
 ## Installation
 

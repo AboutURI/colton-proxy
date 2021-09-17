@@ -43,7 +43,7 @@ throughout the process loader.io, artillery, k6, and new relic were utilized to 
 After database tuning, The server was deployed on AWS ec2 and s3.
 The initial setup was a basic setup with 3x t2.micros. one for the proxy, one for the service, and one for the database
 
-![itial](https://github.com/AboutURI/colton-proxy/images/arc-1.png)
+![itial](https://github.com/AboutURI/colton-proxy/blob/main/images/arc-1.png)
 
 This setup had a very slow response time and maxed out at 165rps before failing
 
